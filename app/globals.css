@@ -77,7 +77,7 @@ body::before {
     rgba(0, 255, 65, 0.01) 4px
   );
   pointer-events: none;
-  z-index: 9999;
+  z-index: 1;
 }
 
 /* Neon glow utilities */

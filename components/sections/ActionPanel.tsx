@@ -51,7 +51,7 @@ export function ActionPanel() {
               >
                 <div className="flex items-start justify-between mb-4">
                   <Icon className={`h-5 w-5 ${colors.color}`} />
-                  <ArrowRight className={`h-3.5 w-3.5 text-gr-text-dim group-hover:${colors.color} transition-colors`} />
+                  <ArrowRight className="h-3.5 w-3.5 text-gr-text-dim group-hover:text-gr-green transition-colors" />
                 </div>
                 <h3 className={`text-sm font-bold tracking-wider mb-1 ${colors.color}`}>{mod.label}</h3>
                 <p className="text-[11px] text-gr-text-muted leading-relaxed">{mod.description}</p>

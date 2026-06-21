@@ -31,12 +31,15 @@ async function request<T>(path: string, options: RequestOptions = {}): Promise<A
     ...fetchOptions.headers,
   }
 
-  // Auth token injection point — swap with real auth provider
-  if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('gr_token')
-    if (token) {
-      (headers as Record<string, string>)['Authorization'] = 'Bearer ' + token
-    }
+  // Auth token injection — replace with httpOnly cookie session or
+  // a secure auth provider (e.g. NextAuth session). Avoid localStorage
+  // for production use due to XSS exposure.
+  const authHeader = typeof window !== 'undefined'
+    ? (document.cookie.match(/(?:^|; )gr_session=([^;]*)/) || [])[1]
+    : undefined
+
+  if (authHeader) {
+    (headers as Record<string, string>)['Authorization'] = 'Bearer ' + decodeURIComponent(authHeader)
   }
 
   try {

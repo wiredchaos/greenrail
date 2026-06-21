@@ -1,9 +1,22 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X, ChevronDown, Activity } from 'lucide-react'
 import { NAV_LINKS, PLATFORM_MODULES } from '@/lib/constants'
+
+function StatusClock() {
+  const [time, setTime] = useState('')
+
+  useEffect(() => {
+    const update = () => setTime(new Date().toUTCString())
+    update()
+    const id = setInterval(update, 1000)
+    return () => clearInterval(id)
+  }, [])
+
+  return <span suppressHydrationWarning>{time}</span>
+}
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -22,7 +35,7 @@ export function Header() {
           <span>GREENRAILS ENTERPRISE PLATFORM v1.0</span>
         </div>
         <div className="flex items-center gap-4">
-          <span>{new Date().toUTCString()}</span>
+          <StatusClock />
         </div>
       </div>
 
