@@ -155,4 +155,4 @@ NEXT_PUBLIC_APP_NAME=GREENRAIL
 
 ## License
 
-MIT © GREENRAIL
+Proprietary © GREENRAIL. All rights reserved.
