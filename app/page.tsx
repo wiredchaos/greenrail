@@ -1,25 +1,27 @@
+'use client'
+
+import { useState } from 'react'
 import { Hero } from '@/components/sections/Hero'
-import { Problem } from '@/components/sections/Problem'
-import { Solution } from '@/components/sections/Solution'
-import { HowItWorks } from '@/components/sections/HowItWorks'
-import { Features } from '@/components/sections/Features'
-import { WhoItsFor } from '@/components/sections/WhoItsFor'
-import { Principles } from '@/components/sections/Principles'
-import { DashboardPreview } from '@/components/sections/DashboardPreview'
-import { CallToAction } from '@/components/sections/CallToAction'
+import { SignalTicker } from '@/components/sections/SignalTicker'
+import { InsightPanel } from '@/components/sections/InsightPanel'
+import { ActionPanel } from '@/components/sections/ActionPanel'
+import { BlogFeed } from '@/components/sections/BlogFeed'
+import type { TickerSignal } from '@/components/sections/SignalTicker'
 
 export default function Home() {
+  const [activeSignal, setActiveSignal] = useState<TickerSignal | null>(null)
+
   return (
     <>
       <Hero />
-      <Problem />
-      <Solution />
-      <HowItWorks />
-      <Features />
-      <WhoItsFor />
-      <Principles />
-      <DashboardPreview />
-      <CallToAction />
+      {/* Step 1: Signal */}
+      <SignalTicker onSignalClick={setActiveSignal} />
+      {/* Step 2: Insight */}
+      <InsightPanel activeSignal={activeSignal} />
+      {/* Step 3: Action */}
+      <ActionPanel />
+      {/* Content feed */}
+      <BlogFeed />
     </>
   )
 }
